@@ -10,6 +10,7 @@
 		75D9C7EA2F32AF2700ECC1D2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D9C7E92F32AF2700ECC1D2 /* SettingsView.swift */; };
 		75D9C7EC2F32AF5A00ECC1D2 /* SETTINGS_FEATURE.md in Resources */ = {isa = PBXBuildFile; fileRef = 75D9C7EB2F32AF5A00ECC1D2 /* SETTINGS_FEATURE.md */; };
 		75D9C7F42F32B3C300ECC1D2 /* PERSISTENCE_FEATURE.md in Resources */ = {isa = PBXBuildFile; fileRef = 75D9C7F32F32B3C300ECC1D2 /* PERSISTENCE_FEATURE.md */; };
+		75D9C7F62F32B5A000ECC1D2 /* QUIT_ON_CLOSE_FEATURE.md in Resources */ = {isa = PBXBuildFile; fileRef = 75D9C7F52F32B5A000ECC1D2 /* QUIT_ON_CLOSE_FEATURE.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +29,7 @@
 		75D9C7E92F32AF2700ECC1D2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		75D9C7EB2F32AF5A00ECC1D2 /* SETTINGS_FEATURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SETTINGS_FEATURE.md; sourceTree = "<group>"; };
 		75D9C7F32F32B3C300ECC1D2 /* PERSISTENCE_FEATURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PERSISTENCE_FEATURE.md; sourceTree = "<group>"; };
+		75D9C7F52F32B5A000ECC1D2 /* QUIT_ON_CLOSE_FEATURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QUIT_ON_CLOSE_FEATURE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -64,6 +66,7 @@
 				75D9C7E92F32AF2700ECC1D2 /* SettingsView.swift */,
 				75D9C7EB2F32AF5A00ECC1D2 /* SETTINGS_FEATURE.md */,
 				75D9C7F32F32B3C300ECC1D2 /* PERSISTENCE_FEATURE.md */,
+				75D9C7F52F32B5A000ECC1D2 /* QUIT_ON_CLOSE_FEATURE.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,6 +170,7 @@
 			files = (
 				75D9C7F42F32B3C300ECC1D2 /* PERSISTENCE_FEATURE.md in Resources */,
 				75D9C7EC2F32AF5A00ECC1D2 /* SETTINGS_FEATURE.md in Resources */,
+				75D9C7F62F32B5A000ECC1D2 /* QUIT_ON_CLOSE_FEATURE.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
