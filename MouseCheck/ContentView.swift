@@ -58,16 +58,57 @@ struct MouseClick: Identifiable {
     let location: CGPoint
     let button: String
     let type: String // down/up/double
+    let deltaSincePreviousMs: Double?
 }
 
 final class ClickLogger: ObservableObject {
     @Published var clicks: [MouseClick] = []
 
+    private var lastTimestampPerButton: [String: Date] = [:]
+
+    static let timeFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "HH:mm:ss.SSS"
+        df.locale = Locale(identifier: "en_US_POSIX")
+        return df
+    }()
+
+    private lazy var timeFormatter: DateFormatter = ClickLogger.timeFormatter
+
     func log(_ click: MouseClick) {
-        clicks.insert(click, at: 0)
-        // Also print to the console for debugging/logging purposes
-        let dateString = DateFormatter.localizedString(from: click.timestamp, dateStyle: .none, timeStyle: .medium)
-        print("[Mouse] \(dateString) - \(click.type) (\(click.button)) at x: \(Int(click.location.x)), y: \(Int(click.location.y))")
+        var computedClick = click
+        let buttonKey = click.button
+        if let last = lastTimestampPerButton[buttonKey] {
+            let delta = click.timestamp.timeIntervalSince(last) * 1000.0 // ms
+            computedClick = MouseClick(
+                timestamp: click.timestamp,
+                location: click.location,
+                button: click.button,
+                type: click.type,
+                deltaSincePreviousMs: delta
+            )
+        } else {
+            computedClick = MouseClick(
+                timestamp: click.timestamp,
+                location: click.location,
+                button: click.button,
+                type: click.type,
+                deltaSincePreviousMs: nil
+            )
+        }
+
+        // Update last timestamp for this button
+        lastTimestampPerButton[buttonKey] = click.timestamp
+
+        clicks.insert(computedClick, at: 0)
+
+        // Console output with milliseconds and delta
+        let timeString = timeFormatter.string(from: computedClick.timestamp)
+        if let delta = computedClick.deltaSincePreviousMs {
+            print("[Mouse] \(timeString) - \(computedClick.type) (\(computedClick.button)) at x: \(Int(computedClick.location.x)), y: \(Int(computedClick.location.y)) | +\(String(format: "%.1f", delta)) ms")
+        } else {
+            print("[Mouse] \(timeString) - \(computedClick.type) (\(computedClick.button)) at x: \(Int(computedClick.location.x)), y: \(Int(computedClick.location.y)) | first")
+        }
     }
 }
 
@@ -100,7 +141,7 @@ struct ContentView: View {
                 MouseCaptureView { point in
                     // SwiftUI's coordinate system in this container has origin at top-left, but our stored localLocation
                     // is managed by onContinuousHover. For consistent display, we'll log using the point from AppKit here.
-                    let click = MouseClick(timestamp: Date(), location: point, button: "secondary", type: "tap")
+                    let click = MouseClick(timestamp: Date(), location: point, button: "secondary", type: "tap", deltaSincePreviousMs: nil)
                     logger.log(click)
                 }
                 .allowsHitTesting(true)
@@ -119,17 +160,13 @@ struct ContentView: View {
             }
             // Mouse down
             .onTapGesture(count: 1) {
-                let click = MouseClick(timestamp: Date(), location: localLocation, button: "primary", type: "tap")
+                let click = MouseClick(timestamp: Date(), location: localLocation, button: "primary", type: "tap", deltaSincePreviousMs: nil)
                 logger.log(click)
             }
             // Double click
             .onTapGesture(count: 2) {
-                let click = MouseClick(timestamp: Date(), location: localLocation, button: "primary", type: "double-tap")
+                let click = MouseClick(timestamp: Date(), location: localLocation, button: "primary", type: "double-tap", deltaSincePreviousMs: nil)
                 logger.log(click)
-            }
-            // Right click (context menu open is our proxy for secondary click)
-            .contextMenu {
-                Button("Secondary click detected") {}
             }
 
             Divider()
@@ -139,7 +176,7 @@ struct ContentView: View {
                 LazyVStack(alignment: .leading, spacing: 8) {
                     ForEach(logger.clicks) { click in
                         HStack(alignment: .firstTextBaseline, spacing: 12) {
-                            Text(DateFormatter.localizedString(from: click.timestamp, dateStyle: .none, timeStyle: .medium))
+                            Text(ClickLogger.timeFormatter.string(from: click.timestamp))
                                 .font(.system(.caption, design: .monospaced))
                                 .foregroundStyle(.secondary)
                             Text("\(click.type)")
@@ -151,6 +188,16 @@ struct ContentView: View {
                             Text("x: \(Int(click.location.x))  y: \(Int(click.location.y))")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
+                            
+                            if let delta = click.deltaSincePreviousMs {
+                                Text("+\(String(format: "%.1f", delta)) ms")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            } else {
+                                Text("first")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
                         }
                         .padding(.vertical, 4)
                     }
