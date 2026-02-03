@@ -1,5 +1,5 @@
 //
-//  MouseCheckApp.swift
+//  ClickMonitorApp.swift
 //  MouseCheck
 //
 //  Created by vd on 03.02.2026.
@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct MouseCheckApp: App {
+struct ClickMonitorApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ClickMonitorView()
         }
     }
 }

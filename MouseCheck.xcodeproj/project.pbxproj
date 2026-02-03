@@ -6,8 +6,28 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		75D9C7EA2F32AF2700ECC1D2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D9C7E92F32AF2700ECC1D2 /* SettingsView.swift */; };
+		75D9C7EC2F32AF5A00ECC1D2 /* SETTINGS_FEATURE.md in Resources */ = {isa = PBXBuildFile; fileRef = 75D9C7EB2F32AF5A00ECC1D2 /* SETTINGS_FEATURE.md */; };
+		75D9C7F42F32B3C300ECC1D2 /* PERSISTENCE_FEATURE.md in Resources */ = {isa = PBXBuildFile; fileRef = 75D9C7F32F32B3C300ECC1D2 /* PERSISTENCE_FEATURE.md */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		75D9C7D62F32ABF100ECC1D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 75D9C7AA2F328CB300ECC1D2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75D9C7B12F328CB300ECC1D2;
+			remoteInfo = MouseCheck;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		75D9C7B22F328CB300ECC1D2 /* MouseCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MouseCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75D9C7D02F32ABF100ECC1D2 /* MouseCheckUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MouseCheckUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		75D9C7E92F32AF2700ECC1D2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		75D9C7EB2F32AF5A00ECC1D2 /* SETTINGS_FEATURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SETTINGS_FEATURE.md; sourceTree = "<group>"; };
+		75D9C7F32F32B3C300ECC1D2 /* PERSISTENCE_FEATURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PERSISTENCE_FEATURE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -26,6 +46,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		75D9C7CD2F32ABF100ECC1D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -34,6 +61,9 @@
 			children = (
 				75D9C7B42F328CB300ECC1D2 /* MouseCheck */,
 				75D9C7B32F328CB300ECC1D2 /* Products */,
+				75D9C7E92F32AF2700ECC1D2 /* SettingsView.swift */,
+				75D9C7EB2F32AF5A00ECC1D2 /* SETTINGS_FEATURE.md */,
+				75D9C7F32F32B3C300ECC1D2 /* PERSISTENCE_FEATURE.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -41,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				75D9C7B22F328CB300ECC1D2 /* MouseCheck.app */,
+				75D9C7D02F32ABF100ECC1D2 /* MouseCheckUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +101,26 @@
 			productReference = 75D9C7B22F328CB300ECC1D2 /* MouseCheck.app */;
 			productType = "com.apple.product-type.application";
 		};
+		75D9C7CF2F32ABF100ECC1D2 /* MouseCheckUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75D9C7D82F32ABF100ECC1D2 /* Build configuration list for PBXNativeTarget "MouseCheckUITests" */;
+			buildPhases = (
+				75D9C7CC2F32ABF100ECC1D2 /* Sources */,
+				75D9C7CD2F32ABF100ECC1D2 /* Frameworks */,
+				75D9C7CE2F32ABF100ECC1D2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				75D9C7D72F32ABF100ECC1D2 /* PBXTargetDependency */,
+			);
+			name = MouseCheckUITests;
+			packageProductDependencies = (
+			);
+			productName = MouseCheckUITests;
+			productReference = 75D9C7D02F32ABF100ECC1D2 /* MouseCheckUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +133,10 @@
 				TargetAttributes = {
 					75D9C7B12F328CB300ECC1D2 = {
 						CreatedOnToolsVersion = 26.2;
+					};
+					75D9C7CF2F32ABF100ECC1D2 = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 75D9C7B12F328CB300ECC1D2;
 					};
 				};
 			};
@@ -100,12 +155,22 @@
 			projectRoot = "";
 			targets = (
 				75D9C7B12F328CB300ECC1D2 /* MouseCheck */,
+				75D9C7CF2F32ABF100ECC1D2 /* MouseCheckUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		75D9C7B02F328CB300ECC1D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75D9C7F42F32B3C300ECC1D2 /* PERSISTENCE_FEATURE.md in Resources */,
+				75D9C7EC2F32AF5A00ECC1D2 /* SETTINGS_FEATURE.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75D9C7CE2F32ABF100ECC1D2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -119,10 +184,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75D9C7EA2F32AF2700ECC1D2 /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75D9C7CC2F32ABF100ECC1D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		75D9C7D72F32ABF100ECC1D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75D9C7B12F328CB300ECC1D2 /* MouseCheck */;
+			targetProxy = 75D9C7D62F32ABF100ECC1D2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		75D9C7BB2F328CB400ECC1D2 /* Debug */ = {
@@ -309,6 +390,44 @@
 			};
 			name = Release;
 		};
+		75D9C7D92F32ABF100ECC1D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6742UG6L9C;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dvn.MouseCheckUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = MouseCheck;
+			};
+			name = Debug;
+		};
+		75D9C7DA2F32ABF100ECC1D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6742UG6L9C;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dvn.MouseCheckUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = MouseCheck;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -326,6 +445,15 @@
 			buildConfigurations = (
 				75D9C7BE2F328CB400ECC1D2 /* Debug */,
 				75D9C7BF2F328CB400ECC1D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75D9C7D82F32ABF100ECC1D2 /* Build configuration list for PBXNativeTarget "MouseCheckUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75D9C7D92F32ABF100ECC1D2 /* Debug */,
+				75D9C7DA2F32ABF100ECC1D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
