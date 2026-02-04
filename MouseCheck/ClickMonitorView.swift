@@ -4,29 +4,34 @@ import AppKit
 #endif
 
 #if canImport(AppKit)
-// Helper view to capture right-clicks on macOS
-struct RightClickDetector: NSViewRepresentable {
-    var onRightClick: () -> Void
-    
-    func makeNSView(context: Context) -> RightClickNSView {
-        let view = RightClickNSView()
-        view.onRightClick = onRightClick
+// Helper view to capture mouse down events on macOS
+struct MouseDownDetector: NSViewRepresentable {
+    var onClick: (CGPoint) -> Void
+
+    func makeNSView(context: Context) -> MouseDownNSView {
+        let view = MouseDownNSView()
+        view.onClick = onClick
         return view
     }
-    
-    func updateNSView(_ nsView: RightClickNSView, context: Context) {
-        nsView.onRightClick = onRightClick
+
+    func updateNSView(_ nsView: MouseDownNSView, context: Context) {
+        nsView.onClick = onClick
     }
 }
 
-final class RightClickNSView: NSView {
-    var onRightClick: (() -> Void)?
-    
+final class MouseDownNSView: NSView {
+    var onClick: ((CGPoint) -> Void)?
+
     override var acceptsFirstResponder: Bool { true }
-    
+
+    override func mouseDown(with event: NSEvent) {
+        let location = convert(event.locationInWindow, from: nil)
+        onClick?(location)
+    }
+
     override func rightMouseDown(with event: NSEvent) {
-        onRightClick?()
-        super.rightMouseDown(with: event)
+        let location = convert(event.locationInWindow, from: nil)
+        onClick?(location)
     }
 }
 #endif
@@ -233,9 +238,9 @@ struct ClickDetectionAreaView: View {
             }
 
             #if canImport(AppKit)
-            // Right-click detection overlay
-            RightClickDetector {
-                handleClick()
+            // Mouse down detection for both left and right clicks
+            MouseDownDetector { location in
+                handleClick(at: location)
             }
             .allowsHitTesting(!isDisabled)
             #endif
@@ -244,9 +249,6 @@ struct ClickDetectionAreaView: View {
         .contentShape(Rectangle())
         .glassEffect(glassEffect, in: .rect(cornerRadius: 16))
         .shadow(color: color.opacity(0.5), radius: 30, y: 15)
-        .onTapGesture { location in
-            handleClick(at: location)
-        }
         .disabled(isDisabled)
     }
 
